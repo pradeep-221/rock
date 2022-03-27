@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCK PAPER SCISSOR GAME</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="rock.css">
+</head>
+
+<body>
+   
+    <div class="design">
+        <h1>ROCK PAPER SCISSOR GAME</h1>
+        <br><br><br>
+        <div class="flex">
+            <div class="computer-choice1">
+                <div class="img">
+                    <i class="fa-brands fa-android"></i>
+                </div>
+                <div id="out">
+
+                </div>
+            </div>
+            <div class="your-choice1">
+                <div class="img">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div id="con">
+                    <div id="console">
+                       
+                    </div>
+                    <div class="button1">
+                        <button id="rock">ROCK</button>
+                        <button id="paper">paper</button>
+                        <button id="scissor">scissor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>output screen</h1>
+        <div id="output">
+
+        </div>
+
+
+    </div>
+    <script>
+        let myscore;
+        let computerscore;
+        const possibleChoices = document.querySelectorAll('button')
+        const userscore = document.getElementById("console");
+        const displaycomputer = document.getElementById("out");
+        let displayresult = document.getElementById("output");
+        possibleChoices.forEach(possibleChoices => possibleChoices.addEventListener('click', (e) => {
+            myscore = e.target.id
+            userscore.innerHTML = myscore
+            generateComputerChoice()
+            getResult()
+        }))
+
+        function generateComputerChoice() {
+            const randomNumber = Math.floor(Math.random() * 3) + 1 // or you can use possibleChoices.length
+
+            if (randomNumber === 1) {
+                computerscore = 'rock'
+            }
+            if (randomNumber === 2) {
+                computerscore = 'scissor'
+            }
+            if (randomNumber === 3) {
+                computerscore = 'paper'
+            }
+            displaycomputer.innerHTML = computerscore
+            console.log(computerscore)
+        }
+        function getResult() {
+            if (computerscore === myscore) {
+                displayresult.innerHTML = "IT IS A DRAW  "
+            }
+            else if (computerscore == "rock" && myscore == "paper") {
+                displayresult.innerHTML = "you are a wineer champ. "
+            }
+            else if (computerscore == "paper" && myscore == "rock") {
+                displayresult.innerHTML = " oops you lose. better luck next time "
+            }
+            else if (computerscore == "rock" && myscore == "scissor") {
+                displayresult.innerHTML = " oops you lose. better luck next time "
+            }
+            else if (computerscore == "scissor" && myscore == "rock") {
+                displayresult.innerHTML="you are a winner champ."
+            }
+            else if (computerscore == "scissor" && myscore == "paper") {
+                displayresult.innerHTML = " oops you lose. better luck next time "
+            }
+            else if (computerscore == "paper" && myscore == "scissor") {
+                displayresult.innerHTML = "you are a wineer champ. "
+            }
+        }
+
+    </script>
+</body>
+
+</html>
